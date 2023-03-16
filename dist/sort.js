@@ -12,12 +12,11 @@ function labSort(arr1, callback) {
                 var newItem = callback(arr1[i], arr1[j]);
                 temp1.push(newItem);
             }
-            return temp1;
         }
+        return temp1;
     }
-    return;
 }
 var taingu = labSort(arrSort1, function (a, b) {
     return a - b;
 });
-console.log(arrSort1);
+console.log(taingu);

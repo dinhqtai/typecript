@@ -12,15 +12,14 @@ for(let j = i+1;j<arr1.length;i++){
     const newItem = callback(arr1[i],arr1[j]);
     temp1.push(newItem);
 }
-return temp1;
     }
+    return temp1;
     
 }
-return 
 }
 const taingu = labSort(arrSort1,(a,b)=>{
  return a-b;
 })
-console.log(arrSort1);
+console.log(taingu);
 
 
