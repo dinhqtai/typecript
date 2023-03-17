@@ -1,6 +1,5 @@
 const arrSort1 = [2,9,10,6,10];
 function labSort<T> (arr1:T[],callback?:(a:T,b:T)=>T):T[]{
-if(callback){
 let temp1 = [];
 for(let i = 0;i<arr1.length-1;i++){
 for(let j = i+1;j<arr1.length;i++){
@@ -16,9 +15,8 @@ for(let j = i+1;j<arr1.length;i++){
     return temp1;
     
 }
-}
 const taingu = labSort(arrSort1,(a,b)=>{
- return a-b;
+       return a-b;
 })
 console.log(taingu);
 
