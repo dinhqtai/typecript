@@ -1,6 +1,6 @@
 const arrSort1 = [2,9,10,6,10];
 const arrSort2 = ["mot","hai","ba","bon"];
-function labSort<T> (arr1:T[],callback?:(a:T,b:T)=>number){
+function labSort<T> (arr1:T[],callback?:(a:T,b:T)=>number):T[]{
     if(!callback){
         callback = (a:T,b:T):number=>{
             if(a>b){
