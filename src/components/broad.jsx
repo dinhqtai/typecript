@@ -3,7 +3,7 @@ import Square from "./square";
 
 const Board = () => {
   const [time, setTime] = useState(5);
-  const [game, setGame] = useState(Array(9).fill(null));
+  const [game, setGame] = useState([null, null, null, null, null, null, null, null, null]);
   const [player, setPlayer] = useState(true);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Board = () => {
       setTime(time - 1);
       if (time <= 0) {
         setTime(5);
-        if (player === true || player === false) {
+        if (!player === true || !player === false) {
           const gameRun = game.reduce((g, checkdanh, index) => {
             if (checkdanh === null) {
               return [...g, index];
@@ -33,10 +33,16 @@ const Board = () => {
         }
       }
     }, 1000);
+    if (checkWinner()) {
+      clearInterval(interval);
+    }
     return () => clearInterval(interval);
   }, [time, player, game]);
 
   const handlePlay = (position) => {
+    if (checkWinner()) {
+      return;
+    }
     if (game[position] === null) {
       const newGame = game.map((g, index) => {
         if (index === position) {
@@ -46,6 +52,7 @@ const Board = () => {
       });
       setGame(newGame);
       setPlayer(!player);
+      setTime(5);
     }
   };
 
@@ -78,10 +85,12 @@ const Board = () => {
   } else {
     check = `Next: ${player ? "X" : "O"}`;
   }
-
+  const Reset = () => {
+  }
   return (
     <>
       <div className="grid grid-cols-2 gap-20"></div>
+      <button onClick={Reset()}></button>
       <h2>{time}</h2>
       <h2>{check}</h2>
       <div className="grid grid-cols-3 gap-2 w-[240px]">
