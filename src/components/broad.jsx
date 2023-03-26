@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Square from "./square";
 
 const Board = () => {
-  const [time, setTime] = useState(5);
+  const [time, setTime] = useState(3);
   const [game, setGame] = useState([null, null, null, null, null, null, null, null, null]);
   const [player, setPlayer] = useState(true);
 
@@ -10,8 +10,8 @@ const Board = () => {
     const interval = setInterval(() => {
       setTime(time - 1);
       if (time <= 0) {
-        setTime(5);
-        if (!player === true || !player === false) {
+        setTime(3);
+        if (!player ? "X" : "O") {
           const gameRun = game.reduce((g, checkdanh, index) => {
             if (checkdanh === null) {
               return [...g, index];
@@ -52,7 +52,7 @@ const Board = () => {
       });
       setGame(newGame);
       setPlayer(!player);
-      setTime(5);
+      setTime(3);
     }
   };
 
@@ -87,8 +87,8 @@ const Board = () => {
   }
   const Reset = () => {
     setGame([null, null, null, null, null, null, null, null, null]);
-    setPlayer(player === false);
-    setTime(5);
+    setPlayer(player ? "X" : "O");
+    setTime(3);
     return;
   }
   return (
