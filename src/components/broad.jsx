@@ -33,7 +33,7 @@ const Board = () => {
         }
       }
     }, 1000);
-    if (checkWinner()) {
+    if (checkWinner() || !game.includes(null)) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
@@ -86,11 +86,15 @@ const Board = () => {
     check = `Next: ${player ? "X" : "O"}`;
   }
   const Reset = () => {
+    setGame([null, null, null, null, null, null, null, null, null]);
+    setPlayer(player === false);
+    setTime(5);
+    return;
   }
   return (
     <>
       <div className="grid grid-cols-2 gap-20"></div>
-      <button onClick={Reset()}></button>
+      <button onClick={Reset}>Reset</button>
       <h2>{time}</h2>
       <h2>{check}</h2>
       <div className="grid grid-cols-3 gap-2 w-[240px]">
