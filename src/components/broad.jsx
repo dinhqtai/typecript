@@ -10,7 +10,7 @@ const Board = () => {
     const interval = setInterval(() => {
       setTime(time - 1);
       if (time <= 0) {
-        setTime(5);
+        setTime(3);
         if (!player ? "X" : "O") {
           const gameRun = game.reduce((g, checkdanh, index) => {
             if (checkdanh === null) {
