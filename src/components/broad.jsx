@@ -5,12 +5,13 @@ const Board = () => {
   const [time, setTime] = useState(3);
   const [game, setGame] = useState([null, null, null, null, null, null, null, null, null]);
   const [player, setPlayer] = useState(true);
+  console.log(game);
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(time - 1);
       if (time <= 0) {
         setTime(3);
-        if (!player ? "X" : "O") {
+        if (!player ? "X" : "O" && game.includes("X")) {
           const gameRun = game.reduce((g, checkdanh, index) => {
             if (checkdanh === null) {
               return [...g, index];
@@ -31,8 +32,8 @@ const Board = () => {
           setPlayer(!player);
         }
       }
-    }, 1000);
-    if (checkWinner() || !game.includes(null)) {
+    }, 500);
+    if (checkWinner() || !game.includes(null) || !game.includes("X")) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
@@ -42,18 +43,16 @@ const Board = () => {
     if (checkWinner()) {
       return;
     }
-    if (game[position] === null) {
-      const newGame = game.map((g, index) => {
-        if (index === position) {
-          return player ? "X" : "O";
-        }
-        return g;
-      });
-      setGame(newGame);
-      setPlayer(!player);
-      setTime(3);
-    }
-  };
+    const newGame = game.map((g, index) => {
+      if (index === position) {
+        return player ? "X" : "O";
+      }
+      return g;
+    });
+    setGame(newGame);
+    setPlayer(!player);
+    setTime(3);
+  }
 
   const listWinner = [
     [0, 1, 2],
@@ -91,7 +90,7 @@ const Board = () => {
     check = `Next: ${player ? "X" : "O"}`;
   }
   const Reset = () => {
-    setGame([null, null, null, null, null, null, null, null, null]);
+    setGame(game.fill(null));
     setPlayer(player ? "X" : "O");
     setTime(3);
     return;
